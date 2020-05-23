@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import Moment from "react-moment";
 import CountUp from "react-countup";
+import uuid from "react-uuid";
 
-import { getData } from "./services";
+import { getData, getCountry } from "./services";
 
 class App extends Component {
   state = {
@@ -12,11 +13,17 @@ class App extends Component {
       recovered: null,
       deaths: null,
       lastUpdate: null,
+      countriesSelection: [],
     },
   };
 
   async componentDidMount() {
     const generalData = await getData();
+
+    const countriesSelection = await getCountry();
+    const countries = countriesSelection.countries.map(
+      (country) => country.name
+    );
 
     this.setState({
       data: {
@@ -24,12 +31,19 @@ class App extends Component {
         recovered: generalData.recovered.value,
         deaths: generalData.deaths.value,
         lastUpdate: generalData.lastUpdate,
+        countriesSelection: countries,
       },
     });
   }
 
   render() {
-    const { confirmed, recovered, deaths, lastUpdate } = this.state.data;
+    const {
+      confirmed,
+      recovered,
+      deaths,
+      lastUpdate,
+      countriesSelection,
+    } = this.state.data;
     return (
       <Main>
         <Title>
@@ -38,7 +52,19 @@ class App extends Component {
         </Title>
         <DataWrapper>
           <GeneralInfo>
-            <TopTitle>World</TopTitle>
+            <SelectWrapper>
+              <SelectCountry>
+                <option value="" disabled selected>
+                  Select a country
+                </option>
+                {countriesSelection.map((country) => (
+                  <option value={country} key={uuid()}>
+                    {country}
+                  </option>
+                ))}
+              </SelectCountry>
+              <TopTitle>World</TopTitle>
+            </SelectWrapper>
             <TopTitle>
               <LastUpdateTitle> Last Update:</LastUpdateTitle>
               <Moment data={lastUpdate} format="MM/DD/YYYY - HH:mm" />
@@ -95,9 +121,23 @@ const DataWrapper = styled.div`
 const GeneralInfo = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 70%;
+  width: 80%;
   margin: 0 auto;
   padding-bottom: 30px;
+`;
+
+const SelectWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  text-align: start;
+  width: 18%;
+`;
+
+const SelectCountry = styled.select`
+  padding: 5px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+  font-size: 1.2rem;
 `;
 
 const TopTitle = styled.span`
