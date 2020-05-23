@@ -1,24 +1,36 @@
 import React, { Component } from "react";
-import axios from "axios";
+
+import { getData } from "./services";
 
 class App extends Component {
-  componentDidMount() {
-    const url = "https://covid19.mathdro.id/api";
-    axios
-      .get(url)
-      .then((res) => {
-        console.log(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-      .finally(() => {
-        console.log("fatching data completed");
-      });
+  state = {
+    data: {
+      confirmed: null,
+      recovered: null,
+      deaths: null,
+      lastUpdate: null,
+    },
+  };
+
+  async componentDidMount() {
+    const generalData = await getData();
+
+    this.setState({
+      data: {
+        confirmed: generalData.confirmed.value,
+        recovered: generalData.recovered.value,
+        deaths: generalData.deaths.value,
+        lastUpdate: generalData.lastUpdate,
+      },
+    });
   }
 
   render() {
-    return <div className="App"></div>;
+    return (
+      <div className="App">
+        <span>{this.state.data.confirmed}</span>
+      </div>
+    );
   }
 }
 
