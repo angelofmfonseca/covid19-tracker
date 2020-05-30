@@ -1,17 +1,14 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import Moment from "react-moment";
-import CountUp from "react-countup";
 import uuid from "react-uuid";
 
 import { getData, getCountry } from "./services";
+import Cards from "./Cards";
 
 class App extends Component {
   state = {
     data: {
-      confirmed: null,
-      recovered: null,
-      deaths: null,
       lastUpdate: null,
       countriesSelection: [],
     },
@@ -37,13 +34,8 @@ class App extends Component {
   }
 
   render() {
-    const {
-      confirmed,
-      recovered,
-      deaths,
-      lastUpdate,
-      countriesSelection,
-    } = this.state.data;
+    const { lastUpdate, countriesSelection } = this.state.data;
+
     return (
       <Main>
         <Title>
@@ -70,26 +62,7 @@ class App extends Component {
               <Moment data={lastUpdate} format="MM/DD/YYYY - HH:mm" />
             </TopTitle>
           </GeneralInfo>
-          <SpecificInfo>
-            <DataCard>
-              <CardTitle>Confirmed:</CardTitle>
-              <CardData>
-                <CountUp start={0} end={confirmed} separator="." />
-              </CardData>
-            </DataCard>
-            <DataCard>
-              <CardTitle>Recovered:</CardTitle>
-              <CardData>
-                <CountUp start={0} end={recovered} separator="." />
-              </CardData>
-            </DataCard>
-            <DataCard>
-              <CardTitle>Deaths:</CardTitle>
-              <CardData>
-                <CountUp start={0} end={deaths} separator="." />
-              </CardData>
-            </DataCard>
-          </SpecificInfo>
+          <Cards />
         </DataWrapper>
       </Main>
     );
@@ -147,27 +120,6 @@ const TopTitle = styled.span`
 const LastUpdateTitle = styled.span`
   display: block;
   text-align: end;
-`;
-
-const SpecificInfo = styled.div`
-  display: flex;
-  justify-content: space-around;
-`;
-
-const DataCard = styled.div`
-  padding: 20px 50px;
-  border-radius: 5px;
-  box-shadow: 0.5px 0.5px 5px 0.5px #ddd;
-`;
-
-const CardTitle = styled.span`
-  display: block;
-  padding-bottom: 5px;
-  font-size: 1.3rem;
-`;
-
-const CardData = styled.span`
-  font-size: 1.2rem;
 `;
 
 export default App;
