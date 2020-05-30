@@ -30,24 +30,24 @@ class Cards extends Component {
 
     return (
       <SpecificInfo>
-        <DataCard>
+        <Card>
           <CardTitle>Infected:</CardTitle>
           <CardData>
             <CountUp start={0} end={confirmed} separator="." />
           </CardData>
-        </DataCard>
-        <DataCard>
+        </Card>
+        <Card>
           <CardTitle>Recovered:</CardTitle>
           <CardData>
             <CountUp start={0} end={recovered} separator="." />
           </CardData>
-        </DataCard>
-        <DataCard>
+        </Card>
+        <Card>
           <CardTitle>Deaths:</CardTitle>
           <CardData>
             <CountUp start={0} end={deaths} separator="." />
           </CardData>
-        </DataCard>
+        </Card>
       </SpecificInfo>
     );
   }
@@ -58,8 +58,8 @@ const SpecificInfo = styled.div`
   justify-content: space-around;
 `;
 
-const DataCard = styled.div`
-  padding: 20px 50px;
+const Card = styled.div`
+  padding: 25px 60px;
   border-radius: 5px;
   box-shadow: 0.5px 0.5px 5px 0.5px #ddd;
 `;
