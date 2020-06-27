@@ -4,7 +4,7 @@ import Moment from "react-moment";
 import uuid from "react-uuid";
 
 import { getData, getCountry } from "./services";
-import Cards from "./Cards";
+import Cards from "./Cards/index";
 
 class App extends Component {
   state = {
@@ -103,18 +103,18 @@ const SelectWrapper = styled.div`
   display: flex;
   flex-direction: column;
   text-align: start;
-  width: 18%;
+  width: 22%;
 `;
 
 const SelectCountry = styled.select`
   padding: 5px;
   margin-bottom: 5px;
   border-radius: 5px;
-  font-size: 1.2rem;
+  font-size: 1rem;
 `;
 
 const TopTitle = styled.span`
-  font-size: 1.3rem;
+  font-size: 1.1rem;
 `;
 
 const LastUpdateTitle = styled.span`
