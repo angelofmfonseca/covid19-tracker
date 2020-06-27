@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import Moment from "react-moment";
 
 import { getData } from "../Services/getData";
 import { getCountry } from "../Services/getCountry";
 import Cards from "../Cards";
 import Select from "../Select";
+import LastUpdate from "../LastUpdate";
 
 class App extends Component {
   state = {
@@ -17,7 +17,6 @@ class App extends Component {
 
   async componentDidMount() {
     const generalData = await getData();
-
     const countriesSelection = await getCountry();
     const countries = countriesSelection.countries.map(
       (country) => country.name
@@ -46,10 +45,7 @@ class App extends Component {
         <DataWrapper>
           <GeneralInfo>
             <Select countriesSelection={countriesSelection} />
-            <TopTitle>
-              <LastUpdateTitle> Last Update:</LastUpdateTitle>
-              <Moment data={lastUpdate} format="MM/DD/YYYY - HH:mm" />
-            </TopTitle>
+            <LastUpdate lastUpdate={lastUpdate} />
           </GeneralInfo>
           <Cards />
         </DataWrapper>
@@ -87,15 +83,6 @@ const GeneralInfo = styled.div`
   width: 80%;
   margin: 0 auto;
   padding-bottom: 30px;
-`;
-
-const TopTitle = styled.span`
-  font-size: 1.1rem;
-`;
-
-const LastUpdateTitle = styled.span`
-  display: block;
-  text-align: end;
 `;
 
 export default App;
