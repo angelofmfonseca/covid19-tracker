@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import Moment from "react-moment";
-import uuid from "react-uuid";
 
-import { getData, getCountry } from "./services";
-import Cards from "./Cards/index";
+import { getData, getCountry } from "../services";
+import Cards from "../Cards";
+import Select from "../Select";
 
 class App extends Component {
   state = {
@@ -44,19 +44,7 @@ class App extends Component {
         </Title>
         <DataWrapper>
           <GeneralInfo>
-            <SelectWrapper>
-              <SelectCountry>
-                <option value="" disabled selected>
-                  Select a country
-                </option>
-                {countriesSelection.map((country) => (
-                  <option value={country} key={uuid()}>
-                    {country}
-                  </option>
-                ))}
-              </SelectCountry>
-              <TopTitle>World</TopTitle>
-            </SelectWrapper>
+            <Select countriesSelection={countriesSelection} />
             <TopTitle>
               <LastUpdateTitle> Last Update:</LastUpdateTitle>
               <Moment data={lastUpdate} format="MM/DD/YYYY - HH:mm" />
@@ -89,6 +77,7 @@ const DataWrapper = styled.div`
   padding: 30px;
   border-radius: 5px;
   box-shadow: 0.5px 0.5px 5px 0.5px #ddd;
+  background-color: #fff;
 `;
 
 const GeneralInfo = styled.div`
@@ -97,20 +86,6 @@ const GeneralInfo = styled.div`
   width: 80%;
   margin: 0 auto;
   padding-bottom: 30px;
-`;
-
-const SelectWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  text-align: start;
-  width: 22%;
-`;
-
-const SelectCountry = styled.select`
-  padding: 5px;
-  margin-bottom: 5px;
-  border-radius: 5px;
-  font-size: 1rem;
 `;
 
 const TopTitle = styled.span`
