@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import Moment from "react-moment";
 
-import { getData, getCountry } from "../services";
+import { getData } from "../Services/getData";
+import { getCountry } from "../Services/getCountry";
 import Cards from "../Cards";
 import Select from "../Select";
 

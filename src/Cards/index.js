@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import CountUp from "react-countup";
 
-import { getData } from "../services";
+import { getData } from "../Services/getData";
 import {
   SpecificInfo,
   Card,
