@@ -1,24 +1,40 @@
 import React, { Component } from "react";
 import uuid from "react-uuid";
 
-import { SelectWrapper, SelectCountry, TopTitle } from "./styles";
+import { SelectWrapper, SelectCountry } from "./styles";
 
 class Select extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedCountry: "World",
+    };
+  }
+
+  handleChange = (e) => {
+    this.setState({
+      selectedCountry: e.target.value,
+    });
+  };
+
   render() {
     const { countriesSelection } = this.props;
+    const { selectedCountry } = this.state;
+
     return (
       <SelectWrapper>
-        <SelectCountry>
-          <option value="" disabled selected>
-            Select a country
+        <SelectCountry onChange={this.handleChange}>
+          <option value={selectedCountry} disabled selected>
+            {selectedCountry}
           </option>
-          {countriesSelection.map((country) => (
-            <option value={country} key={uuid()}>
-              {country}
-            </option>
-          ))}
+          {countriesSelection.map((country) => {
+            return (
+              <option value={country} key={uuid()}>
+                {country}
+              </option>
+            );
+          })}
         </SelectCountry>
-        <TopTitle>World</TopTitle>
       </SelectWrapper>
     );
   }

@@ -1,12 +1,12 @@
 import axios from "axios";
 
-const contriesUrl = "https://covid19.mathdro.id/api/countries";
+const countriesUrl = "https://covid19.mathdro.id/api/countries";
 
 export const getCountry = async () => {
   try {
     const {
       data: { countries },
-    } = await axios.get(contriesUrl);
+    } = await axios.get(countriesUrl);
     console.log("Loading...");
     return { countries };
   } catch (err) {

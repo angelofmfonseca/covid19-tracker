@@ -13,7 +13,3 @@ export const SelectCountry = styled.select`
   border-radius: 5px;
   font-size: 1rem;
 `;
-
-export const TopTitle = styled.span`
-  font-size: 1.1rem;
-`;
