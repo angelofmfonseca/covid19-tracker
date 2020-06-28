@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Main = styled.main`
   text-align: center;
-  margin: 20px;
+  margin: 40px;
 `;
 
 export const Title = styled.span`
