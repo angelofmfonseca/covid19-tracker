@@ -26,7 +26,7 @@ export const DataWrapper = styled.div`
 export const GeneralInfo = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 80%;
+  width: 90%;
   margin: 0 auto;
   padding-bottom: 30px;
 `;
