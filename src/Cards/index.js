@@ -35,7 +35,6 @@ class Cards extends Component {
 
   render() {
     const { confirmed, recovered, deaths } = this.state.data;
-
     return (
       <SpecificInfo>
         <InfectedCard>

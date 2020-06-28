@@ -20,7 +20,6 @@ class Select extends Component {
   render() {
     const { countriesSelection } = this.props;
     const { selectedCountry } = this.state;
-    console.log(selectedCountry);
     return (
       <SelectWrapper>
         <SelectCountry onChange={this.handleChange}>

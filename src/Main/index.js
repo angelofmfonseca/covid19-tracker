@@ -17,6 +17,7 @@ class App extends Component {
 
   async componentDidMount() {
     const generalData = await getData();
+
     const countriesSelection = await getCountry();
     const countries = countriesSelection.countries.map(
       (country) => country.name
@@ -24,9 +25,6 @@ class App extends Component {
 
     this.setState({
       data: {
-        confirmed: generalData.confirmed.value,
-        recovered: generalData.recovered.value,
-        deaths: generalData.deaths.value,
         lastUpdate: generalData.lastUpdate,
         countriesSelection: countries,
       },
